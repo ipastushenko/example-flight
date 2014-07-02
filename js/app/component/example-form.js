@@ -1,4 +1,4 @@
-var FormData = flight.component(function () {
+var ExampleForm = flight.component(function () {
 	this.defaultAttrs({
 
 	});
