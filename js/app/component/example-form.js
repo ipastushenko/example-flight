@@ -1,12 +1,11 @@
 var ExampleForm = flight.component(function () {
     this.defaultAttrs({
-        prefixUrl: "/",
-        postfixUrl: ".json",
+        successUrl: "/success.json",
+        errorUrl: "/error.json",
+        delay: 5000
     });
 
-    this.on_submit = function (e) {
-        var form = e.target;
-        var url = this.attr.prefixUrl + form.url.value + this.attr.postfixUrl;
+    this.run_ajax = function(url) {
         $.ajax({
             url: url,
             type: "GET",
@@ -23,6 +22,23 @@ var ExampleForm = flight.component(function () {
                 alert("Url: " + url + ", Error: " + errorThrown);
             }
         });
+    }
+
+    this.on_submit = function (e) {
+        var form = e.target;
+        var url;
+        if (form['with-errors'].checked) {
+            url = this.attr.errorUrl;
+        } else {
+            url = this.attr.successUrl;
+        }
+        that = this;
+        setTimeout(
+            function() {
+                that.run_ajax(url);
+            },
+            this.attr.delay
+        );
         return false;
     }
 
