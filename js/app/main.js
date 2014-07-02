@@ -1,3 +1,3 @@
 $(document).ready(function(){
-	ExampleForm.attachTo("#example-form")
+    ExampleForm.attachTo("#example-form")
 });
