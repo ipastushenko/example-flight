@@ -4,22 +4,25 @@ var ExampleForm = flight.component(function () {
         postfixUrl: ".json",
     });
 
-    this.on_submit = function (e, data) {
-        var url = this.attr.prefixUrl + e.target.url.value + this.attr.postfixUrl;
+    this.on_submit = function (e) {
+        var form = e.target;
+        var url = this.attr.prefixUrl + form.url.value + this.attr.postfixUrl;
         $.ajax({
-            type: "GET",
             url: url,
-            dataType: "json"
-        }).done(function(data, textStatus, jqXHR) {
-            if (data.success) {
-                alert("Url: " + url + ", Success");
+            type: "GET",
+            dataType: "json",            
+            success: function(data, textStatus, jqXHR) {
+                if (data.success) {
+                    alert("Url: " + url + ", Success");
+                }
+                else {
+                    alert("Url: " + url + ", Error: " + data.error);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert("Url: " + url + ", Error: " + errorThrown);
             }
-            else {
-                alert("Url: " + url + ", Error: " + data.error);
-            }
-        }).fail(function(jqXHR, textStatus, error) {
-            alert("Url: " + url + ", Error: " + error);
-        });     
+        });
         return false;
     }
 
