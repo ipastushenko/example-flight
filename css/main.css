@@ -3,3 +3,8 @@
     height: 32px;
     background-image: url('/img/loading.gif');
 }
+
+.error-message {
+    color: red;
+    display: none;    
+}
