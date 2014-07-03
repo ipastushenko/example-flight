@@ -1,8 +1,13 @@
-var ExampleForm = flight.component(function () {
+var ExampleForm = flight.component(Loader, function () {
     this.defaultAttrs({
+        loader: "#loader",
+        loaderShowEvent: "showLoader",
+        loaderHideEvent: "hideLoader",
+        submitButton: "submit-button",
+        delay: 5000,
+        urlSelector: "url-selector",
         successUrl: "/success.json",
-        errorUrl: "/error.json",
-        delay: 5000
+        errorUrl: "/error.json"
     });
 
     this.run_ajax = function(url) {
@@ -27,18 +32,24 @@ var ExampleForm = flight.component(function () {
     this.on_submit = function (e) {
         var form = e.target;
         var url;
-        if (form['with-errors'].checked) {
+        if (form[this.attr.urlSelector].checked) {
             url = this.attr.errorUrl;
         } else {
             url = this.attr.successUrl;
-        }
+        }        
+
+        form[this.attr.submitButton].disabled = true;
+        this.trigger(this.attr.loaderShowEvent);
         that = this;
         setTimeout(
             function() {
                 that.run_ajax(url);
+                that.trigger(that.attr.loaderHideEvent);
+                form[that.attr.submitButton].disabled = false;
             },
             this.attr.delay
         );
+        
         return false;
     }
 

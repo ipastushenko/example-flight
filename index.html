@@ -4,6 +4,7 @@
         <title>Example Flight</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/lib/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/main.css" />
     </head>
     <body>
         <div class="container">
@@ -14,7 +15,7 @@
                     <td>3</td>
                 </tr>
             </table>
-            <form id="example-form" class="col-md-offset-4 col-md-4" role="form">
+            <form id="example-form" class="col-md-offset-4 col-md-4" role="form">                
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input id="username" class="form-control" type="text" name="username" placeholder="Enter your username" />
@@ -25,10 +26,11 @@
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="with-errors" /> With errors?
+                        <input type="checkbox" name="url-selector" /> With errors?
                     </label>
-                </div>                
-                <input class="btn btn-primary pull-right" type="submit" value="Submit" />
+                </div>
+                <div id="loader" class="loader invisible col-md-offset-5 col-md-2"></div>
+                <input class="btn btn-primary pull-right" type="submit" name="submit-button" value="Submit" />
             </form>
         </div>
         <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js"></script>
@@ -36,6 +38,7 @@
         <script type="text/javascript" src="js/lib/es5-shim.min.js"></script>
         <script type="text/javascript" src="js/lib/flight.min.js"></script>
         <script type="text/javascript" src="js/lib/handlebars-v1.3.0.js"></script>
+        <script type="text/javascript" src="js/app/mixin/loader.js"></script>
         <script type="text/javascript" src="js/app/component/example-form.js"></script>
         <script type="text/javascript" src="js/app/component/example-table.js"></script>
         <script type="text/javascript" src="js/app/main.js"></script>
