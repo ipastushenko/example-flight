@@ -1,4 +1,4 @@
-var ExampleForm = flight.component(Loader, function () {
+var exampleFormComponent = flight.component(loaderMixin, function () {
     this.defaultAttrs({
         //loader
         loader: "#loader",        
@@ -17,7 +17,7 @@ var ExampleForm = flight.component(Loader, function () {
         errorUrl: "/error.json"
     });
 
-    this.run_ajax = function(url) {
+    this.runAjax = function(url) {
         $.ajax({
             url: url,
             type: "GET",
@@ -37,22 +37,22 @@ var ExampleForm = flight.component(Loader, function () {
     }
 
     this.validation = function(form) {
-        var is_error = false;
+        var isError = false;
         if (!form.username.value) {
-            $(this.attr.usernameError).html("Username can't be blank");
-            $(this.attr.usernameError).show(0).delay(this.attr.showErrorDelay).hide(0);
-            is_error = true;
+            this.select("usernameError").html("Username can't be blank");
+            this.select("usernameError").show(0).delay(this.attr.showErrorDelay).hide(0);
+            isError = true;
         }
         if (!form.password.value) {
-            $(this.attr.passwordError).html("Password can't be blank");
-            $(this.attr.passwordError).show(0).delay(this.attr.showErrorDelay).hide(0);
-            is_error = true;
+            this.select("passwordError").html("Password can't be blank");
+            this.select("passwordError").show(0).delay(this.attr.showErrorDelay).hide(0);
+            isError = true;
         }
 
-        return !is_error;
+        return !isError;
     }
 
-    this.on_submit = function (e) {
+    this.onSubmit = function (e, data) {
         var form = e.target;
         if (!this.validation(form)) {
             return false;
@@ -70,7 +70,7 @@ var ExampleForm = flight.component(Loader, function () {
         that = this;
         setTimeout(
             function() {
-                that.run_ajax(url);
+                that.runAjax(url);
                 that.trigger(that.attr.loaderHideEvent);
                 form[that.attr.submitButton].disabled = false;
             },
@@ -81,6 +81,6 @@ var ExampleForm = flight.component(Loader, function () {
     }
 
     this.after("initialize", function() {
-        this.on("submit", this.on_submit)
+        this.on("submit", this.onSubmit)
     });
 });
