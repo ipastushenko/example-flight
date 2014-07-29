@@ -1,4 +1,8 @@
-var loaderMixin = function () {    
+var loaderMixin = function () {
+    this.defaultAttrs({
+        loaderShowEvent: "showLoader",
+        loaderHideEvent: "hideLoader"
+    });
     this.onShow = function (e, data) {
         this.select("loader").css("visibility", "visible");
     }
@@ -8,7 +12,7 @@ var loaderMixin = function () {
     }
 
     this.after("initialize", function() {
-        this.on("showLoader", this.onShow);
-        this.on("hideLoader", this.onHide);
+        this.on(this.attr.loaderShowEvent, this.onShow);
+        this.on(this.attr.loaderHideEvent, this.onHide);
     });
 }

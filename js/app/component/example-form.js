@@ -1,9 +1,7 @@
-var exampleFormComponent = flight.component(loaderMixin, function () {
+var exampleFormComponent = flight.component(exampleFormUIMixin, loaderMixin, function () {
     this.defaultAttrs({
         //loader
-        loader: "#loader",        
-        loaderShowEvent: "showLoader",
-        loaderHideEvent: "hideLoader",
+        loader: "#loader",
         //validation
         usernameError: "#username-error",
         passwordError: "#password-error",        
