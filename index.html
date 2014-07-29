@@ -8,14 +8,9 @@
     </head>
     <body>
         <div class="container">
-            <table class="table">
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                </tr>
-            </table>
-            <form id="example-form" class="col-md-offset-4 col-md-4" role="form">                
+            <h2 class="text-center">Exmaple Form</h2>
+            <form id="example-form" class="col-md-offset-4 col-md-4" role="form">
+                <p id="submit-message" class="invisible">Submit message</p>                
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input id="username" class="form-control" type="text" name="username" placeholder="Enter your username" />
@@ -34,6 +29,15 @@
                 <div id="loader" class="loader invisible col-md-offset-5 col-md-2"></div>
                 <input class="btn btn-primary pull-right" type="submit" name="submit-button" value="Submit" />
             </form>
+            <div class="clearfix"></div>
+            <h2 class="text-center">Example Table</h2>
+            <table class="table">
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+            </table>
         </div>
         <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/lib/es5-sham.min.js"></script>

@@ -1,1 +1,1 @@
-{"success": false, "error": "This error page"}
+{"success": false, "message": "This form is with errors", "detail_errors": {"username": "Error!!!", "password": "Password must be more eight symbols"}}

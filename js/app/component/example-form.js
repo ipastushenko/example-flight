@@ -2,10 +2,12 @@ var exampleFormComponent = flight.component(exampleFormUIMixin, loaderMixin, fun
     this.defaultAttrs({
         //loader
         loader: "#loader",
+        //general message
+        submitMessage: "#submit-message",
         //validation
         usernameError: "#username-error",
         passwordError: "#password-error",        
-        showErrorDelay: 1500,
+        showErrorDelay: 2500,
         //general
         submitButton: "submit-button",
         //for emulate errors
@@ -16,38 +18,43 @@ var exampleFormComponent = flight.component(exampleFormUIMixin, loaderMixin, fun
     });
 
     this.runAjax = function(url) {
+        var that = this;
         $.ajax({
             url: url,
             type: "GET",
             dataType: "json",            
             success: function(data, textStatus, jqXHR) {
-                if (data.success) {
-                    alert("Url: " + url + ", Success");
-                }
-                else {
-                    alert("Url: " + url + ", Error: " + data.error);
-                }
+                that.trigger(
+                    that.attr.showSubmitMessageEvent,
+                    {success: data.success, message:data.message}
+                );
+                if (!data.success) {
+                    that.trigger(that.attr.showDetailErrorsEvent, data.detail_errors);
+                }                
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                alert("Url: " + url + ", Error: " + errorThrown);
+                that.trigger(
+                    that.attr.showSubmitMessageEvent, 
+                    {success: false, message: "Can't connect to server"}
+                );
             }
         });
     }
 
     this.validation = function(form) {
-        var isError = false;
+        var errors = {};
         if (!form.username.value) {
-            this.select("usernameError").html("Username can't be blank");
-            this.select("usernameError").show(0).delay(this.attr.showErrorDelay).hide(0);
-            isError = true;
+            errors['username'] = "Username can't be blank";
         }
         if (!form.password.value) {
-            this.select("passwordError").html("Password can't be blank");
-            this.select("passwordError").show(0).delay(this.attr.showErrorDelay).hide(0);
-            isError = true;
+            errors['password'] = "Username can't be blank";
         }
+        if ($.isEmptyObject(errors)) {
+            return true;            
+        }
+        this.trigger(this.attr.showDetailErrorsEvent, errors)
 
-        return !isError;
+        return false;
     }
 
     this.onSubmit = function (e, data) {
