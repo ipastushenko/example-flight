@@ -6,7 +6,8 @@ var exampleFormComponent = flight.component(exampleFormUIMixin, loaderMixin, fun
         submitMessage: "#submit-message",
         //validation
         usernameError: "#username-error",
-        passwordError: "#password-error",        
+        passwordError: "#password-error",
+        errorSufix: "Error",
         showErrorDelay: 2500,
         //general
         submitButton: "submit-button",

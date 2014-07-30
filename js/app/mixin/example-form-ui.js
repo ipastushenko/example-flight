@@ -20,8 +20,8 @@ var exampleFormUIMixin = function () {
     this.onShowDetailErrors = function (e, data) {
 		var keys = Object.keys(data);
     	for (var i = 0; i < keys.length; ++i) {
-    		this.select(keys[i] + "Error").html(data[keys[i]]);
-    		this.select(keys[i] + "Error").show(0).delay(this.attr.showErrorDelay).hide(0);
+    		this.select(keys[i] + this.attr.errorSufix).html(data[keys[i]]);
+    		this.select(keys[i] + this.attr.errorSufix).show(0).delay(this.attr.showErrorDelay).hide(0);
     	}
     }
 
