@@ -31,18 +31,39 @@
             </form>
             <div class="clearfix"></div>
             <h2 class="text-center">Example Table</h2>
-            <table id="example-table" class="table">
-                
-            </table>
+            <div id="example-table">
+                <table id="table" class="table" data-url-prefix="/page" data-url-postfix=".json">    
+                </table>
+                <div id="table-loader" class="loader invisible col-md-offset-5 col-md-2"></div>
+                <div id="table-paginator" class="pages"></div>
+
+                <!-- Handlebars templates -->
+                <script id="paginator-template" type="text/x-handlebars-template">
+                    {{#list pages}}<a class="js-page" href={{url}} data-page-number={{pageNumber}}>{{name}}</a>{{/list}}
+                </script>
+                <script id="table-template" type="text/x-handlebars-template">
+                    <thead>
+                        {{#head columns}}{{name}}{{/head}}
+                    </thead>
+                    <tbody>
+                        {{#body elements}}<td>{{username}}</td><td>{{password}}</td>{{/body}}
+                    </tbody>
+                </script>
+            </div>
         </div>
+        
         <script type="text/javascript" src="js/lib/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/lib/es5-sham.min.js"></script>
         <script type="text/javascript" src="js/lib/es5-shim.min.js"></script>
         <script type="text/javascript" src="js/lib/flight.min.js"></script>
         <script type="text/javascript" src="js/lib/handlebars-v1.3.0.js"></script>
+        <script type="text/javascript" src="js/app/helpers/list-helper.js"></script>
+        <script type="text/javascript" src="js/app/helpers/table-head-helper.js"></script>
+        <script type="text/javascript" src="js/app/helpers/table-body-helper.js"></script>
         <script type="text/javascript" src="js/app/mixin/loader.js"></script>
         <script type="text/javascript" src="js/app/mixin/example-form-ui.js"></script>
         <script type="text/javascript" src="js/app/component/example-form.js"></script>
+        <script type="text/javascript" src="js/app/mixin/paginator.js"></script>
         <script type="text/javascript" src="js/app/mixin/example-table-ui.js"></script>
         <script type="text/javascript" src="js/app/component/example-table.js"></script>
         <script type="text/javascript" src="js/app/main.js"></script>

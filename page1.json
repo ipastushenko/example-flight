@@ -1,1 +1,1 @@
-{ "success": true, "table": { "page": 1, "per_page": 3, "total": 9, "columns": ["username", "password"] ,"elements": [[{"username": "user1"}, {"password": "password1"}],[{"username": "user2"}, {"password": "password2"}], [{"username": "user3"}, {"password": "password3"}]] } }
+{ "success": true, "table": { "page": 1, "perPage": 3, "total": 9, "columns": [{"name": "Username"}, {"name": "Password"}] ,"elements": [{"username": "user1", "password": "password1"},{"username": "user2", "password": "password2"}, {"username": "user3", "password": "password3"}] } }
